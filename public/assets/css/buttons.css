@@ -1,0 +1,51 @@
+/* buttons.css — the call-to-action button, in its three finishes:
+   solid red (default), .ghost (outlined) and .chrome (metal). */
+
+.ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+.cta{--g1:var(--red);--g2:var(--red-deep);
+  position:relative;display:inline-flex;align-items:center;gap:14px;
+  padding:19px 34px;border:0;border-radius:999px;cursor:pointer;
+  font-family:var(--font-head);font-size:.94rem;font-weight:700;letter-spacing:-.005em;
+  color:#fff;white-space:nowrap;
+  background:linear-gradient(135deg,var(--g1),var(--g2));
+  box-shadow:0 14px 34px -14px rgba(220,3,3,.85),inset 0 1px 0 rgba(255,255,255,.25);
+  transition:transform .32s var(--ease),box-shadow .42s var(--ease);
+  isolation:isolate;overflow:hidden;will-change:transform;
+  animation:bob 5.5s ease-in-out infinite}
+.cta:nth-child(2){animation-delay:-2.4s}
+.cta:nth-child(3){animation-delay:-4.1s}
+@keyframes bob{0%,100%{translate:0 0}50%{translate:0 -6px}}
+
+/* slow conic sweep behind the button, masked back to a rim by ::after */
+.cta::before{content:"";position:absolute;inset:-160%;z-index:-1;opacity:.5;
+  background:conic-gradient(from 0deg,transparent 0deg,rgba(255,255,255,.85) 26deg,transparent 62deg,transparent 360deg);
+  animation:spin 4.6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.cta::after{content:"";position:absolute;inset:1.6px;border-radius:999px;z-index:-1;
+  background:linear-gradient(135deg,var(--g1),var(--g2))}
+/* the travelling highlight */
+.cta i{position:absolute;top:0;bottom:0;width:46%;left:-60%;z-index:0;pointer-events:none;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.42),transparent);
+  transform:skewX(-18deg);animation:sheen 4.2s ease-in-out infinite}
+@keyframes sheen{0%{left:-60%}42%{left:130%}100%{left:130%}}
+
+.cta span,.cta svg{position:relative;z-index:1}
+.cta svg{width:17px;height:17px;transition:transform .38s var(--ease)}
+.cta:hover{transform:translateY(-4px) scale(1.028);
+  box-shadow:0 24px 52px -16px rgba(220,3,3,.9),inset 0 1px 0 rgba(255,255,255,.3)}
+.cta:hover svg{transform:translateX(4px)}
+.cta:active{transform:translateY(-1px) scale(.985)}
+
+.cta.ghost{--g1:rgba(255,255,255,.09);--g2:rgba(255,255,255,.03);color:currentColor;
+  box-shadow:inset 0 0 0 1.4px currentColor;backdrop-filter:blur(8px)}
+.cta.ghost::before{opacity:.22}
+.cta.ghost:hover{box-shadow:inset 0 0 0 1.6px currentColor,0 18px 40px -18px rgba(0,0,0,.5)}
+
+.cta.chrome{--g1:#e9eef2;--g2:#a9b4bc;color:#12100f;
+  box-shadow:0 14px 34px -16px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.9)}
+
+@media(max-width:860px){
+  .ctas{gap:12px}
+  .cta{padding:17px 26px;font-size:.9rem}
+}
+@media(max-width:520px){ .cta{flex:1 1 100%;justify-content:center} }

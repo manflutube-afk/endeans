@@ -1,0 +1,13 @@
+/* about.css — the two-column story layout and its stack of photographs. */
+
+.split-about{display:grid;align-items:center;gap:clamp(24px,4.5vw,66px);
+  grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr)}
+.photostack{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,1.6vw,18px);align-items:center}
+.photostack .tall{aspect-ratio:3/4;grid-row:span 2}
+.photostack .square{aspect-ratio:1/1}
+
+@media(max-width:860px){
+  .split-about{grid-template-columns:1fr;gap:clamp(22px,5vw,34px)}
+  /* text first on a phone, photographs after it */
+  .split-about>.photostack{order:2}
+}

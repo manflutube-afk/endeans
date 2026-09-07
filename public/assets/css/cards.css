@@ -1,0 +1,42 @@
+/* cards.css — the small repeated content shapes: service cards, pills and badges. */
+
+.grid{display:grid;gap:clamp(12px,1.4vw,18px);margin-top:26px}
+.g3{grid-template-columns:repeat(auto-fit,minmax(238px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+
+.card{position:relative;padding:26px 26px 28px;border-radius:var(--r-lg);overflow:hidden;
+  background:var(--surface);box-shadow:inset 0 0 0 1px var(--surface-bd);
+  transition:transform .5s var(--ease),box-shadow .5s var(--ease),background .5s var(--ease)}
+.card:hover{transform:translateY(-7px);background:rgba(220,3,3,.09);
+  box-shadow:inset 0 0 0 1px rgba(220,3,3,.36),0 26px 54px -26px rgba(0,0,0,.6)}
+.card h2,.card h3{font-family:var(--font-head);font-weight:700;font-size:1.12rem;
+  letter-spacing:-.012em;line-height:1.25}
+.card p{font-size:.95rem;line-height:1.62;opacity:.82;margin-top:9px}
+/* .dot marks the handful of services worth drawing the eye to */
+.card .dot{position:absolute;top:26px;right:26px;width:9px;height:9px;border-radius:50%;
+  background:var(--red);box-shadow:0 0 0 0 rgba(220,3,3,.55);animation:pulse 2.6s ease-out infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 15px rgba(220,3,3,0)}100%{box-shadow:0 0 0 0 rgba(220,3,3,0)}}
+.card.feature{background:linear-gradient(135deg,var(--red),var(--red-deep));color:#fff;
+  box-shadow:0 22px 48px -22px rgba(220,3,3,.9)}
+.card.feature p{opacity:.94}
+.card.feature:hover{background:linear-gradient(135deg,var(--red-2),var(--red-deep))}
+
+.pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.pill{display:inline-flex;align-items:center;gap:9px;padding:11px 21px;border-radius:999px;
+  font-size:.86rem;font-weight:500;background:var(--surface-2);
+  box-shadow:inset 0 0 0 1px var(--surface-2-bd)}
+.pill.red{background:linear-gradient(135deg,var(--red),var(--red-deep));color:#fff;
+  box-shadow:0 10px 26px -12px rgba(220,3,3,.9)}
+
+.badge{display:inline-flex;align-items:center;gap:11px;padding:9px 20px 9px 10px;border-radius:999px;
+  background:linear-gradient(135deg,rgba(255,255,255,.13),rgba(255,255,255,.04));
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.16);font-family:var(--font-head);font-size:.76rem;
+  letter-spacing:.1em;text-transform:uppercase;font-weight:700}
+body[data-theme="light"] .badge{background:linear-gradient(135deg,rgba(23,18,17,.07),rgba(23,18,17,.02));
+  box-shadow:inset 0 0 0 1px rgba(23,18,17,.12)}
+.badge em{width:26px;height:26px;border-radius:50%;font-style:normal;font-size:.72rem;color:#fff;
+  background:linear-gradient(135deg,var(--red),var(--red-deep));display:grid;place-items:center}
+
+@media(max-width:860px){
+  .card{padding:22px 22px 24px}
+}

@@ -1,0 +1,36 @@
+/* lightbox.css — the full-screen photo viewer. Loaded only on pages with
+   clickable photographs, alongside assets/js/lightbox.js. */
+
+#lb{position:fixed;inset:0;z-index:90;display:none;align-items:center;justify-content:center;
+  padding:clamp(16px,4vw,54px);background:rgba(10,8,8,.93);
+  backdrop-filter:blur(22px) saturate(120%);-webkit-backdrop-filter:blur(22px) saturate(120%)}
+#lb.open{display:flex;animation:lbin .38s var(--ease)}
+#lb:focus{outline:none}
+@keyframes lbin{from{opacity:0}to{opacity:1}}
+
+#lb figure{display:flex;flex-direction:column;align-items:center;gap:16px;max-width:100%;max-height:100%}
+#lb img{max-width:min(1180px,92vw);max-height:78vh;width:auto;height:auto;object-fit:contain;
+  border-radius:clamp(14px,1.6vw,26px);box-shadow:0 50px 110px -40px rgba(0,0,0,.9);
+  animation:lbpop .5s var(--ease)}
+@keyframes lbpop{from{opacity:0;transform:scale(.94) translateY(14px)}to{opacity:1;transform:none}}
+#lb figcaption{color:#f7f1e8;font-size:.9rem;letter-spacing:.02em;text-align:center;opacity:.82}
+
+.lbbtn{position:absolute;border:0;cursor:pointer;border-radius:999px;color:#f7f1e8;
+  background:rgba(255,255,255,.09);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18);
+  backdrop-filter:blur(10px);display:grid;place-items:center;
+  transition:background .35s var(--ease),transform .35s var(--ease)}
+.lbbtn:hover{background:var(--red);transform:scale(1.08);box-shadow:0 10px 28px -10px rgba(220,3,3,.9)}
+.lbbtn svg{width:20px;height:20px}
+#lbClose{top:clamp(14px,3vw,28px);right:clamp(14px,3vw,28px);width:50px;height:50px}
+#lbPrev,#lbNext{top:50%;transform:translateY(-50%);width:54px;height:54px}
+#lbPrev{left:clamp(10px,2.4vw,28px)}
+#lbNext{right:clamp(10px,2.4vw,28px)}
+#lbPrev:hover,#lbNext:hover{transform:translateY(-50%) scale(1.08)}
+#lbCount{position:absolute;bottom:clamp(14px,3vw,26px);left:50%;transform:translateX(-50%);
+  color:#f7f1e8;opacity:.55;font-size:.78rem;letter-spacing:.22em;font-variant-numeric:tabular-nums}
+
+@media(max-width:640px){
+  #lb img{max-height:66vh}
+  #lbPrev,#lbNext{width:46px;height:46px;top:auto;bottom:clamp(48px,9vh,70px);transform:none}
+  #lbPrev:hover,#lbNext:hover{transform:scale(1.08)}
+}

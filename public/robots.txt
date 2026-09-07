@@ -1,0 +1,5 @@
+# Endean's Barber Shop — everything is public, nothing to hide from crawlers.
+User-agent: *
+Allow: /
+
+Sitemap: https://endeansbarbers.manflutube.workers.dev/sitemap.xml

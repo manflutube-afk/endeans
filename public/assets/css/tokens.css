@@ -1,0 +1,43 @@
+/* tokens.css — every colour, font and shape value the site uses.
+   Change a brand colour here and it changes everywhere. Loaded first on every page. */
+:root{
+  /* neutrals */
+  --ink:#14100f; --ink-2:#1d1817; --ink-3:#2a2321;
+  --cream:#f9f4ec; --cream-2:#f2e9dc; --sand:#e3d5c2;
+
+  /* brand */
+  --red:#dc0303; --red-2:#ff2a2a; --red-deep:#8e0509;
+  --chrome-1:#f4f6f8; --chrome-2:#b9c2c9; --chrome-3:#7f8a92;
+
+  /* text */
+  --txt-dark:#171211; --txt-light:#f7f1e8;
+  --muted-dark:#6b5d55; --muted-light:#b8aca1;
+
+  --font-head:'Archivo',"Helvetica Neue",Helvetica,Arial,sans-serif;
+  --font-body:'Karla',system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+
+  --r-lg:44px; --r-md:30px; --r-sm:20px;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --maxw:1180px;
+
+  /* the header re-tints itself against whichever theme the page uses */
+  --nav-fg:#f7f1e8; --nav-bg:rgba(20,16,15,.42); --nav-bd:rgba(255,255,255,.14);
+
+  /* per-page theme, overridden below */
+  --bg:var(--ink); --fg:var(--txt-light);
+  --surface:rgba(255,255,255,.055); --surface-bd:rgba(255,255,255,.09);
+  --surface-2:rgba(255,255,255,.075); --surface-2-bd:rgba(255,255,255,.12);
+}
+
+/* Pages declare their own mood with <body data-theme="dark"> or "light". */
+body[data-theme="dark"]{
+  --bg:var(--ink); --fg:var(--txt-light);
+  --surface:rgba(255,255,255,.055); --surface-bd:rgba(255,255,255,.09);
+  --surface-2:rgba(255,255,255,.075); --surface-2-bd:rgba(255,255,255,.12);
+}
+body[data-theme="light"]{
+  --bg:var(--cream); --fg:var(--txt-dark);
+  --surface:rgba(23,18,17,.038); --surface-bd:rgba(23,18,17,.075);
+  --surface-2:rgba(23,18,17,.05); --surface-2-bd:rgba(23,18,17,.09);
+  --nav-fg:#171211; --nav-bg:rgba(255,255,255,.55); --nav-bd:rgba(23,18,17,.10);
+}

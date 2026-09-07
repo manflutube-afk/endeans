@@ -1,0 +1,25 @@
+/* home.css — layout that only the home page needs. */
+
+.hero{min-height:calc(100vh - 96px);display:flex;align-items:center}
+.hero .wrap{width:100%}
+.hero-logo{width:clamp(96px,13vw,160px);height:auto;margin-bottom:26px}
+.hero-photo{aspect-ratio:3/4;max-height:60vh;margin-inline:auto;width:100%}
+.hero .lede{margin-top:22px}
+
+/* the three-up strip under the hero */
+.quicklinks{display:grid;gap:clamp(12px,1.5vw,18px);grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.quicklink{display:block;padding:30px 30px 32px;border-radius:var(--r-lg);background:var(--surface);
+  box-shadow:inset 0 0 0 1px var(--surface-bd);
+  transition:transform .5s var(--ease),background .5s var(--ease),box-shadow .5s var(--ease)}
+.quicklink:hover{transform:translateY(-7px);background:rgba(220,3,3,.09);
+  box-shadow:inset 0 0 0 1px rgba(220,3,3,.36),0 26px 54px -26px rgba(0,0,0,.6)}
+.quicklink h3{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.quicklink h3 svg{width:18px;height:18px;flex:none;color:var(--red);
+  transition:transform .38s var(--ease)}
+.quicklink:hover h3 svg{transform:translateX(5px)}
+.quicklink p{font-size:.95rem;line-height:1.62;opacity:.82;margin-top:10px}
+
+@media(max-width:860px){
+  .hero{min-height:0}
+  .hero-photo{aspect-ratio:4/3;max-height:38vh}
+}
