@@ -43,6 +43,7 @@
 <link rel="stylesheet" href="/assets/css/lightbox.css">
 <link rel="stylesheet" href="/assets/css/reviews.css">
 <link rel="stylesheet" href="/assets/css/home.css">
+<link rel="stylesheet" href="/assets/css/carousel.css">
 
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"HairSalon",
@@ -143,7 +144,7 @@
       <h2 class="fade-up d1">Where to next</h2>
       <p class="lede fade-up d2" style="margin-top:18px">Everything about the shop, on its own page &mdash; what we do, who we are, what it looks like inside, and how to find us.</p>
 
-      <div class="quicklinks fade-up d3" style="margin-top:30px">
+      <div class="quicklinks swipe fade-up d3" style="margin-top:30px">
         <a class="quicklink" href="/services/">
           <h3>The Services <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></h3>
           <p>Cuts, re-styles, wet shaves, beard trims, colouring, ear piercing and more &mdash; all without an appointment.</p>
@@ -161,47 +162,10 @@
           <p>Opening hours, the address on Harbour Road, phone numbers and a map to get you to the door.</p>
         </a>
       </div>
+      <p class="swipe-hint" aria-hidden="true"><span>Swipe</span><svg viewBox="0 0 26 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6h22M18 1l5 5-5 5"/></svg></p>
     </div>
   </section>
 
-  <!-- ============================= REVIEWS ============================= -->
-  <section class="section">
-    <div class="blob" style="width:40vw;height:40vw;left:-14vw;top:-8vw;background:radial-gradient(circle,rgba(255,120,120,.16),transparent 66%);animation-delay:-3s" aria-hidden="true"></div>
-    <div class="wrap">
-      <span class="eyebrow fade-up">What people say</span>
-      <h2 class="fade-up d1">Reviews</h2>
-      <p class="lede fade-up d2" style="margin-top:18px">Left on Google by people who actually sat in the chair. Here are a few of them &mdash; and if you have been in recently, we would be glad if you left one yourself.</p>
-      <div class="rating-summary fade-up d3">
-        <div class="score">4.9</div>
-        <div>
-          <span class="stars" role="img" aria-label="Rated 4.9 out of 5"></span>
-          <p>Based on <b>98 reviews</b> on Google</p>
-        </div>
-      </div>
-
-      <div class="review-grid fade-up d4">
-        <figure class="review">
-          <span class="stars" role="img" aria-label="Rated 5 out of 5"></span>
-          <blockquote>Brilliant service, very professional and friendly. Highly recommended.</blockquote>
-          <figcaption><b>Bob Fuller</b><span>4 months ago &middot; Google</span></figcaption>
-        </figure>
-        <figure class="review">
-          <span class="stars" role="img" aria-label="Rated 5 out of 5"></span>
-          <blockquote>I went with my daughter and 3 year old grandson today he has been completely anti haircut for 2 years. Stella was absolutely amazing with him, so patient and so lovely, thanks so much xx</blockquote>
-          <figcaption><b>Jenny Richards</b><span>a year ago &middot; Google</span></figcaption>
-        </figure>
-        <figure class="review">
-          <span class="stars" role="img" aria-label="Rated 5 out of 5"></span>
-          <blockquote>Excellent service from friendly, trained, and experienced barbers. Lovely atmosphere with chat and banter. They cover up to date styles for the young and trendy to short back and sides for oldies like me!</blockquote>
-          <figcaption><b>Dr David Hill</b><span>a year ago &middot; Google</span></figcaption>
-        </figure>
-      </div>
-
-      <div class="ctas fade-up d3">
-        <a class="cta" href="https://www.google.com/maps/place/Endean%27s+Barber+Shop/@50.3512658,-4.7105108,18.75z/data=!4m8!3m7!1s0x486b65eebc970bff:0x907857aa1c45df7d!8m2!3d50.3503914!4d-4.7088254!9m1!1b1!16s%2Fg%2F11cnrc5_l_?hl=en-GB" target="_blank" rel="noopener noreferrer"><i></i><span>Review us on Google</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.6 5.6 6 .8-4.4 4.2 1.1 6.1L12 16.8 6.7 19.7l1.1-6.1L3.4 9.4l6-.8z"/></svg></a>
-      </div>
-    </div>
-  </section>
 
   <!-- ============================= WALK IN ============================= -->
   <section class="section">
@@ -222,6 +186,46 @@
                data-full="/assets/img/inside-1100.webp"
                loading="lazy" width="600" height="600" alt="Inside Endean's Barber Shop">
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= REVIEWS ============================= -->
+  <section class="section">
+    <div class="blob" style="width:40vw;height:40vw;left:-14vw;top:-8vw;background:radial-gradient(circle,rgba(255,120,120,.16),transparent 66%);animation-delay:-3s" aria-hidden="true"></div>
+    <div class="wrap">
+      <span class="eyebrow fade-up">What people say</span>
+      <h2 class="fade-up d1">Reviews</h2>
+      <p class="lede fade-up d2" style="margin-top:18px">Left on Google by people who actually sat in the chair. Here are a few of them &mdash; and if you have been in recently, we would be glad if you left one yourself.</p>
+      <div class="rating-summary fade-up d3">
+        <div class="score">4.9</div>
+        <div>
+          <span class="stars" role="img" aria-label="Rated 4.9 out of 5"></span>
+          <p>Based on <b>98 reviews</b> on Google</p>
+        </div>
+      </div>
+
+      <div class="review-grid swipe fade-up d4">
+        <figure class="review">
+          <span class="stars" role="img" aria-label="Rated 5 out of 5"></span>
+          <blockquote>Brilliant service, very professional and friendly. Highly recommended.</blockquote>
+          <figcaption><b>Bob Fuller</b><span>4 months ago &middot; Google</span></figcaption>
+        </figure>
+        <figure class="review">
+          <span class="stars" role="img" aria-label="Rated 5 out of 5"></span>
+          <blockquote>I went with my daughter and 3 year old grandson today he has been completely anti haircut for 2 years. Stella was absolutely amazing with him, so patient and so lovely, thanks so much xx</blockquote>
+          <figcaption><b>Jenny Richards</b><span>a year ago &middot; Google</span></figcaption>
+        </figure>
+        <figure class="review">
+          <span class="stars" role="img" aria-label="Rated 5 out of 5"></span>
+          <blockquote>Excellent service from friendly, trained, and experienced barbers. Lovely atmosphere with chat and banter. They cover up to date styles for the young and trendy to short back and sides for oldies like me!</blockquote>
+          <figcaption><b>Dr David Hill</b><span>a year ago &middot; Google</span></figcaption>
+        </figure>
+      </div>
+      <p class="swipe-hint" aria-hidden="true"><span>Swipe</span><svg viewBox="0 0 26 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6h22M18 1l5 5-5 5"/></svg></p>
+
+      <div class="ctas fade-up d3">
+        <a class="cta" href="https://www.google.com/maps/place/Endean%27s+Barber+Shop/@50.3512658,-4.7105108,18.75z/data=!4m8!3m7!1s0x486b65eebc970bff:0x907857aa1c45df7d!8m2!3d50.3503914!4d-4.7088254!9m1!1b1!16s%2Fg%2F11cnrc5_l_?hl=en-GB" target="_blank" rel="noopener noreferrer"><i></i><span>Review us on Google</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.6 5.6 6 .8-4.4 4.2 1.1 6.1L12 16.8 6.7 19.7l1.1-6.1L3.4 9.4l6-.8z"/></svg></a>
       </div>
     </div>
   </section>

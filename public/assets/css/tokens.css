@@ -21,6 +21,7 @@
   --font-body:'Karla',system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
 
   --r-lg:44px; --r-md:30px; --r-sm:20px;
+  --edge:clamp(20px,5vw,74px);   /* page gutter, shared with the carousel */
   --ease:cubic-bezier(.22,1,.36,1);
   --maxw:1180px;
 

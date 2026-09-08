@@ -24,7 +24,7 @@ a{color:inherit;text-decoration:none}
 main{flex:1 0 auto;position:relative}
 .section{position:relative;overflow:hidden;padding:clamp(72px,10vh,120px) 0}
 .section.first{padding-top:clamp(116px,15vh,168px)}
-.wrap{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:clamp(20px,5vw,74px);position:relative;z-index:2}
+.wrap{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:var(--edge);position:relative;z-index:2}
 
 .split{display:grid;align-items:center;gap:clamp(24px,4vw,64px);grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr)}
 /* On a wide screen the two halves of a split start on the same line, so a

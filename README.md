@@ -105,6 +105,7 @@ Each file owns one thing, and each page loads only what it uses.
 | `cards.css` | Service cards, pills and badges. |
 | `photos.css` | The organic photo crops. |
 | `lightbox.css` | The full-screen photo viewer. |
+| `carousel.css` | Turns a row of cards into a swipeable strip on phones. Must be linked **after** the file that owns the row. |
 | `home.css`, `services.css`, `about.css`, `gallery.css`, `reviews.css`, `visit.css` | Layout for that one page only. |
 
 ### The palette
@@ -169,6 +170,12 @@ directly, rather than the reviews list. It looks like `https://g.page/r/…/revi
 and you get it from your Google Business Profile under **Ask for reviews**. If
 you paste that in, use it for the *Leave a review* buttons and keep the current
 link for *Read the reviews*.
+
+**Make a row of cards swipe on a phone.** Add `swipe` to the row's class list
+and put a `<p class="swipe-hint">` straight after it, then link
+`carousel.css` after the stylesheet that owns the row. The home page does this
+for its quick links and its reviews; the reviews page deliberately does not, so
+those stay a grid on every screen.
 
 **Change the reviews shown on the page.** Eight reviews are reproduced word for
 word in `public/reviews/index.html`, and the first three of those also appear on

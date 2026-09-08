@@ -1,0 +1,48 @@
+/* carousel.css — on a phone, a row of cards becomes a swipeable strip.
+
+   Add class="swipe" alongside the row's own class and put a .swipe-hint after
+   it. Desktop is untouched: the same markup stays exactly the grid it was.
+
+   IMPORTANT: this file must be linked AFTER the stylesheet that owns the row
+   (home.css for .quicklinks, reviews.css for .review-grid). The `.swipe` rules
+   below have the same specificity as those, so load order is what decides. */
+
+.swipe-hint{display:none}
+
+@media(max-width:860px){
+  .swipe{
+    display:flex;
+    gap:14px;
+    overflow-x:auto;
+    overscroll-behavior-x:contain;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    /* The strip bleeds out to both screen edges so the next card is visibly
+       cut off — that overhang is what tells someone there is more to swipe to.
+       --edge matches the horizontal padding .wrap uses. */
+    margin-inline:calc(-1 * var(--edge));
+    padding-inline:var(--edge);
+    padding-block:4px 8px;
+    scroll-padding-inline:var(--edge);
+    scrollbar-width:none;
+  }
+  .swipe::-webkit-scrollbar{display:none}
+  /* A spacer, because a flex container's trailing padding is dropped from the
+     scrollable area in some browsers and the last card ends up flush. */
+  .swipe::after{content:"";flex:0 0 1px}
+  .swipe > *{flex:0 0 76%;scroll-snap-align:start;margin:0}
+
+  /* Cards in a strip should not lift on tap the way they do on hover. */
+  .swipe > *:hover{transform:none}
+
+  .swipe-hint{display:flex;align-items:center;justify-content:center;gap:10px;
+    margin-top:16px;font-family:var(--font-head);font-size:.72rem;font-weight:700;
+    letter-spacing:.22em;text-transform:uppercase;color:var(--red);opacity:.9}
+  .swipe-hint svg{width:26px;height:12px;flex:none;
+    animation:nudge 1.9s ease-in-out infinite}
+  @keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(8px)}}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .swipe-hint svg{animation:none}
+}
