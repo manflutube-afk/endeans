@@ -2,11 +2,13 @@
 
 .hero{min-height:calc(100vh - 96px);display:flex;align-items:center}
 .hero .wrap{width:100%}
-/* The logo and the barber pole stand side by side at the top of the page. */
-.hero-lockup{display:flex;align-items:center;gap:clamp(14px,2.4vw,26px);margin-bottom:26px}
-.hero-logo{width:clamp(96px,13vw,160px);height:auto}
-.hero-pole{height:clamp(96px,13vw,150px);width:auto;flex:none;
-  filter:drop-shadow(0 10px 20px rgba(168,4,6,.22))}
+/* The logo and the barber pole stand side by side at the top of the page.
+   The pole is set a little taller than the logo so it reads as standing
+   beside it rather than sitting level with it. */
+.hero-lockup{display:flex;align-items:center;gap:clamp(16px,2.6vw,30px);margin-bottom:30px}
+.hero-logo{width:clamp(132px,17vw,215px);height:auto}
+.hero-pole{height:clamp(150px,19vw,245px);width:auto;flex:none;
+  filter:drop-shadow(0 12px 22px rgba(168,4,6,.2))}
 .hero-photo{aspect-ratio:3/4;max-height:60vh;margin-inline:auto;width:100%}
 .hero .lede{margin-top:22px}
 

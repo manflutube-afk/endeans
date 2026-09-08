@@ -144,8 +144,12 @@ ideally 512px or larger, dark artwork on a transparent background) and run
 icons and `public/favicon.ico` together, so they never drift apart.
 
 **Change the barber pole** beside the logo on the home page: replace
-`source-images/pole.png` and run `npm run images`. The build trims the empty
-space around the artwork automatically, so it does not need cropping first.
+`source-images/pole.png` and run `npm run images`. The build cuts the pole out
+of its background and trims the empty space around it, so the source does not
+need masking or cropping first — a photograph on a plain dark backdrop is
+enough. If a future image has a *light* background, the cut-out will need its
+threshold changing in `tools/build-images.mjs`; the comment there explains how
+the number was chosen.
 
 **Add a photograph.** Drop it in `source-images/`, add it to the list in
 `tools/build-images.mjs`, run `npm run images`, then add a `<div class="ph soft">`

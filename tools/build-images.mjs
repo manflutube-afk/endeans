@@ -37,13 +37,59 @@ for (const w of [96, 320]) {
   console.log('logo   ', file);
 }
 
-/* The barber pole that stands beside the logo on the home page. The original
-   is a square canvas with a lot of empty space around the pole, so it is
-   trimmed back to the artwork before resizing. */
-const poleTrimmed = await sharp('source-images/pole.png').trim().toBuffer();
-for (const h of [220, 440]) {
+/* The barber pole that stands beside the logo on the home page.
+
+   The source photograph sits on a black studio background, which would show
+   as a black rectangle on a white page. Rather than key out every dark pixel
+   — which would eat the black bands in the chrome caps as well — the
+   background is found by flooding inwards from the edges of the image and
+   keeping only pixels that are genuinely dark. The pole's own dark areas are
+   enclosed by bright chrome, so the flood never reaches them.
+
+   Measured on the source, the glow around the pole peaks near luminance 100
+   while the pole's outer edge starts above 200, so 150 sits in the gap. */
+async function cutOutBackground(src, threshold = 150) {
+  const { data, info } = await sharp(src).ensureAlpha().raw()
+    .toBuffer({ resolveWithObject: true });
+  const { width: W, height: H, channels: C } = info;
+
+  const lum = new Uint8Array(W * H);
+  for (let i = 0, p = 0; p < W * H; p++, i += C) {
+    lum[p] = (0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2]) | 0;
+  }
+
+  const isBackground = new Uint8Array(W * H);
+  const queue = [];
+  for (let x = 0; x < W; x++) queue.push(x, x + (H - 1) * W);
+  for (let y = 0; y < H; y++) queue.push(y * W, W - 1 + y * W);
+  while (queue.length) {
+    const p = queue.pop();
+    if (isBackground[p] || lum[p] >= threshold) continue;
+    isBackground[p] = 1;
+    const x = p % W, y = (p / W) | 0;
+    if (x > 0) queue.push(p - 1);
+    if (x < W - 1) queue.push(p + 1);
+    if (y > 0) queue.push(p - W);
+    if (y < H - 1) queue.push(p + W);
+  }
+
+  const alpha = Buffer.alloc(W * H);
+  for (let p = 0; p < W * H; p++) alpha[p] = isBackground[p] ? 0 : 255;
+
+  /* A touch of blur on the mask keeps the cut edge from looking stepped. */
+  const mask = await sharp(alpha, { raw: { width: W, height: H, channels: 1 } })
+    .blur(1.2).toBuffer();
+
+  return sharp(src).ensureAlpha()
+    .joinChannel(mask, { raw: { width: W, height: H, channels: 1 } })
+    .png().toBuffer();
+}
+
+const poleCut = await sharp(await cutOutBackground('source-images/pole.png'))
+  .trim().png().toBuffer();
+for (const h of [260, 520]) {
   const file = `${OUT}/pole-${h}.webp`;
-  await sharp(poleTrimmed).resize({ height: h }).webp({ quality: 88 }).toFile(file);
+  await sharp(poleCut).resize({ height: h }).webp({ quality: 88 }).toFile(file);
   const m = await sharp(file).metadata();
   console.log('pole   ', file, `${m.width}x${m.height}`);
 }
