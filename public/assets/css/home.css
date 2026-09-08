@@ -12,7 +12,7 @@
    the `.split` rule that collapses to one column in base.css, so left unscoped
    it would keep the hero two-up on a phone. */
 @media(min-width:861px){
-  .hero .split{align-items:start;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .hero .split{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
 }
 /* The logo and the barber pole stand side by side at the top of the page.
    The pole is set a little taller than the logo so it reads as standing

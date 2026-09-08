@@ -2,7 +2,7 @@
 
 The website for Endean's Barber Shop, 10a Harbour Road, Par, Cornwall PL24 2BB.
 
-Five hand-written HTML pages served as static files from Cloudflare. There is no
+Six hand-written HTML pages served as static files from Cloudflare. There is no
 framework, no template engine and no build step for the site itself — what is in
 `public/` is exactly what gets served. Editing a page means opening that page's
 `.html` file and changing the words.
@@ -74,10 +74,11 @@ public/                     everything that gets served, exactly as served
 ├── services/index.html     Services
 ├── about/index.html        About
 ├── gallery/index.html      Gallery
+├── reviews/index.html      Reviews, and how to leave one
 ├── visit/index.html        Opening hours, address, map
 ├── 404.html                Shown for any unknown address
 ├── robots.txt              Points crawlers at the sitemap
-├── sitemap.xml             The five pages, for Google
+├── sitemap.xml             The six pages, for Google
 ├── site.webmanifest        Icons and colours for "add to home screen"
 ├── _headers                Cache and security headers, read by Cloudflare
 └── assets/
@@ -104,7 +105,7 @@ Each file owns one thing, and each page loads only what it uses.
 | `cards.css` | Service cards, pills and badges. |
 | `photos.css` | The organic photo crops. |
 | `lightbox.css` | The full-screen photo viewer. |
-| `home.css`, `services.css`, `about.css`, `gallery.css`, `visit.css` | Layout for that one page only. |
+| `home.css`, `services.css`, `about.css`, `gallery.css`, `reviews.css`, `visit.css` | Layout for that one page only. |
 
 ### The palette
 
@@ -150,6 +151,24 @@ need masking or cropping first — a photograph on a plain dark backdrop is
 enough. If a future image has a *light* background, the cut-out will need its
 threshold changing in `tools/build-images.mjs`; the comment there explains how
 the number was chosen.
+
+**Change where the review buttons point.** The shop has no reviews of its own
+on this site — they all live on Google, and the buttons link straight out to
+them. That link appears in **four** places: three times in
+`public/reviews/index.html` (two buttons at the top, one in the steps section)
+and once in the Reviews band on `public/index.html`. Search for
+`google.com/maps/place` to find them all.
+
+Google also offers a short one-tap link that opens the write-a-review box
+directly, rather than the reviews list. It looks like `https://g.page/r/…/review`
+and you get it from your Google Business Profile under **Ask for reviews**. If
+you paste that in, use it for the *Leave a review* buttons and keep the current
+link for *Read the reviews*.
+
+No reviews are reproduced on the page and there is deliberately no star rating
+in the structured data. Google treats self-reported ratings on your own site as
+spam, and inventing review text would be worse. If you want real quotes shown
+on the page, send me the actual wording and who said it.
 
 **Add a photograph.** Drop it in `source-images/`, add it to the list in
 `tools/build-images.mjs`, run `npm run images`, then add a `<div class="ph soft">`
