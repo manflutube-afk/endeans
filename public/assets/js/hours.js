@@ -8,13 +8,13 @@
 
   /* Indexed by JavaScript's day number: 0 = Sunday. Minutes past midnight. */
   var WEEK = [
-    null,                 /* Sunday    — closed */
-    null,                 /* Monday    — closed */
-    [9 * 60, 19 * 60],    /* Tuesday   9:00am – 7:00pm */
-    [9 * 60, 19 * 60],    /* Wednesday 9:00am – 7:00pm */
-    [9 * 60, 17 * 60],    /* Thursday  9:00am – 5:00pm */
-    [9 * 60, 17 * 60],    /* Friday    9:00am – 5:00pm */
-    [8 * 60 + 30, 12 * 60] /* Saturday 8:30am – 12:00pm */
+    null,                    /* Sunday    — closed */
+    null,                    /* Monday    — closed */
+    [17 * 60, 21 * 60],      /* Tuesday   5:00pm – 9:00pm */
+    [8 * 60 + 30, 17 * 60],  /* Wednesday 8:30am – 5:00pm */
+    [8 * 60 + 30, 17 * 60],  /* Thursday  8:30am – 5:00pm */
+    [8 * 60 + 30, 17 * 60],  /* Friday    8:30am – 5:00pm */
+    [8 * 60 + 30, 12 * 60]   /* Saturday  8:30am – 12:00pm */
   ];
 
   var now = new Date();

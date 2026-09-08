@@ -1,8 +1,8 @@
 /* photos.css — photographs are never a hard rectangle on this site.
    .ph is the frame; the modifier class picks the crop shape. */
 
-.ph{overflow:hidden;position:relative;background:var(--ink-2);cursor:zoom-in;
-  box-shadow:0 30px 70px -34px rgba(0,0,0,.75);transition:transform .7s var(--ease)}
+.ph{overflow:hidden;position:relative;background:var(--blush);cursor:zoom-in;
+  box-shadow:0 24px 54px -28px rgba(168,4,6,.55);transition:transform .7s var(--ease)}
 .ph img{width:100%;height:100%;object-fit:cover;
   transition:transform 1.1s var(--ease),filter .7s var(--ease)}
 .ph:hover img{transform:scale(1.07)}

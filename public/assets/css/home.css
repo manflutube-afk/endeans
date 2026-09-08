@@ -23,3 +23,11 @@
   .hero{min-height:0}
   .hero-photo{aspect-ratio:4/3;max-height:38vh}
 }
+
+/* ---------- red-theme inversions ---------- */
+body[data-theme="red"] .quicklink:hover{background:rgba(255,255,255,.22);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.5),0 26px 54px -26px rgba(90,0,0,.45)}
+body[data-theme="red"] .quicklink h3 svg{color:#fff}
+
+/* Same treatment for the large logo in the hero. */
+body[data-theme="red"] .hero-logo{filter:brightness(0) invert(1)}

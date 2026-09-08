@@ -1,17 +1,20 @@
 /* tokens.css — every colour, font and shape value the site uses.
-   Change a brand colour here and it changes everywhere. Loaded first on every page. */
+   Change a brand colour here and it changes everywhere. Loaded first on every page.
+
+   The palette is red and white only. There is no black anywhere: the darkest
+   value on the site is --maroon, a deep red used for text on white pages. */
 :root{
-  /* neutrals */
-  --ink:#14100f; --ink-2:#1d1817; --ink-3:#2a2321;
-  --cream:#f9f4ec; --cream-2:#f2e9dc; --sand:#e3d5c2;
+  /* whites */
+  --white:#ffffff;
+  --paper:#fff6f5;      /* barely-pink white, for gently separating sections */
+  --blush:#ffe9e8;      /* light red tint, used behind photos while they load */
 
-  /* brand */
-  --red:#dc0303; --red-2:#ff2a2a; --red-deep:#8e0509;
-  --chrome-1:#f4f6f8; --chrome-2:#b9c2c9; --chrome-3:#7f8a92;
-
-  /* text */
-  --txt-dark:#171211; --txt-light:#f7f1e8;
-  --muted-dark:#6b5d55; --muted-light:#b8aca1;
+  /* reds */
+  --red:#dc0303;        /* the brand red — page backgrounds and buttons */
+  --red-2:#ff2a2a;      /* brighter, for hovers and highlights */
+  --red-deep:#a80406;   /* deeper, for the footer and gradient ends */
+  --maroon:#3d0b0b;     /* text on white — dark enough to read, still red */
+  --maroon-soft:#8c4a4a;/* secondary text on white */
 
   --font-head:'Archivo',"Helvetica Neue",Helvetica,Arial,sans-serif;
   --font-body:'Karla',system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
@@ -20,24 +23,29 @@
   --ease:cubic-bezier(.22,1,.36,1);
   --maxw:1180px;
 
-  /* the header re-tints itself against whichever theme the page uses */
-  --nav-fg:#f7f1e8; --nav-bg:rgba(20,16,15,.42); --nav-bd:rgba(255,255,255,.14);
-
-  /* per-page theme, overridden below */
-  --bg:var(--ink); --fg:var(--txt-light);
-  --surface:rgba(255,255,255,.055); --surface-bd:rgba(255,255,255,.09);
-  --surface-2:rgba(255,255,255,.075); --surface-2-bd:rgba(255,255,255,.12);
+  /* Defaults are the white theme; the two blocks below switch the whole
+     page by swapping these same names. Nothing outside this file needs to
+     know which theme it is on. */
+  --bg:var(--white); --fg:var(--maroon); --muted:var(--maroon-soft);
+  --surface:rgba(220,3,3,.055);      /* card and panel fill */
+  --surface-bd:rgba(220,3,3,.14);    /* their hairline border */
+  --surface-2:rgba(220,3,3,.07);     /* pills and striped rows */
+  --surface-2-bd:rgba(220,3,3,.16);
+  --nav-fg:var(--maroon); --nav-bg:rgba(255,255,255,.72); --nav-bd:rgba(220,3,3,.18);
 }
 
-/* Pages declare their own mood with <body data-theme="dark"> or "light". */
-body[data-theme="dark"]{
-  --bg:var(--ink); --fg:var(--txt-light);
-  --surface:rgba(255,255,255,.055); --surface-bd:rgba(255,255,255,.09);
-  --surface-2:rgba(255,255,255,.075); --surface-2-bd:rgba(255,255,255,.12);
+/* Pages declare their own mood with <body data-theme="white"> or "red".
+   They alternate down the site: home red, services white, about red,
+   gallery white, visit red. */
+body[data-theme="white"]{
+  --bg:var(--white); --fg:var(--maroon); --muted:var(--maroon-soft);
+  --surface:rgba(220,3,3,.055); --surface-bd:rgba(220,3,3,.14);
+  --surface-2:rgba(220,3,3,.07); --surface-2-bd:rgba(220,3,3,.16);
+  --nav-fg:var(--maroon); --nav-bg:rgba(255,255,255,.72); --nav-bd:rgba(220,3,3,.18);
 }
-body[data-theme="light"]{
-  --bg:var(--cream); --fg:var(--txt-dark);
-  --surface:rgba(23,18,17,.038); --surface-bd:rgba(23,18,17,.075);
-  --surface-2:rgba(23,18,17,.05); --surface-2-bd:rgba(23,18,17,.09);
-  --nav-fg:#171211; --nav-bg:rgba(255,255,255,.55); --nav-bd:rgba(23,18,17,.10);
+body[data-theme="red"]{
+  --bg:var(--red); --fg:var(--white); --muted:rgba(255,255,255,.78);
+  --surface:rgba(255,255,255,.13); --surface-bd:rgba(255,255,255,.26);
+  --surface-2:rgba(255,255,255,.16); --surface-2-bd:rgba(255,255,255,.3);
+  --nav-fg:var(--white); --nav-bg:rgba(255,255,255,.16); --nav-bd:rgba(255,255,255,.34);
 }

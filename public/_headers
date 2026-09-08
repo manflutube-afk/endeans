@@ -14,12 +14,14 @@
 /
   Cache-Control: public, max-age=0, must-revalidate
 
-# Stylesheets and scripts change when the site is edited, so keep this short.
+# Stylesheets and scripts have no version in their filenames, so they must be
+# revalidated on every visit — otherwise an edit stays invisible for as long as
+# the cache lasts. They are a few kB each, and a revalidation is a cheap 304.
 /assets/css/*
-  Cache-Control: public, max-age=3600
+  Cache-Control: public, max-age=0, must-revalidate
 
 /assets/js/*
-  Cache-Control: public, max-age=3600
+  Cache-Control: public, max-age=0, must-revalidate
 
 # Images are regenerated with a new width in the filename when they change.
 /assets/img/*

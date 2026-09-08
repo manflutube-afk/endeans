@@ -106,6 +106,27 @@ Each file owns one thing, and each page loads only what it uses.
 | `lightbox.css` | The full-screen photo viewer. |
 | `home.css`, `services.css`, `about.css`, `gallery.css`, `visit.css` | Layout for that one page only. |
 
+### The two themes
+
+The palette is red and white — there is no black on the site, and the darkest
+value anywhere is `--maroon`, a deep red used for text on white pages.
+
+Every page declares one of two themes on its `<body>` tag, and they alternate
+down the site so it never reads as a wall of one colour:
+
+| Page | Theme |
+| --- | --- |
+| Home, About, Visit, 404 | `<body data-theme="red">` — red background, white text |
+| Services, Gallery | `<body data-theme="white">` — white background, maroon text |
+
+The theme swaps a handful of CSS variables in `tokens.css`, and everything else
+follows automatically. The only things that need to know which theme they are on
+are the ones that would otherwise be red on red — the buttons, the active nav
+pill, the "open now" pill, today's row in the opening hours, and the logo. Each
+of those has a short `body[data-theme="red"]` block at the bottom of the file
+that owns it. To flip a page from one theme to the other, change its `body` tag
+and its `theme-color` meta; nothing else.
+
 ### The scripts
 
 All four are plain JavaScript, no dependencies, loaded with `defer`. The site

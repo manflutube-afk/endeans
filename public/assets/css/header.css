@@ -11,8 +11,8 @@
 .site-header .brand img{width:44px;height:auto;filter:drop-shadow(0 2px 6px rgba(0,0,0,.35))}
 .site-header .brand .lg-light{display:block}
 .site-header .brand .lg-dark{display:none}
-body[data-theme="light"] .site-header .brand .lg-light{display:none}
-body[data-theme="light"] .site-header .brand .lg-dark{display:block}
+body[data-theme="white"] .site-header .brand .lg-light{display:none}
+body[data-theme="white"] .site-header .brand .lg-dark{display:block}
 .site-header .brand span{font-family:var(--font-head);font-weight:700;font-size:1.02rem;
   letter-spacing:-.005em;line-height:1;color:var(--nav-fg);white-space:nowrap}
 
@@ -45,8 +45,17 @@ body.menu #burger i:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
     flex-direction:column;align-items:stretch;padding:14px;border-radius:var(--r-md);gap:2px;
     opacity:0;visibility:hidden;transform:translateY(-16px) scale(.97);
     transition:opacity .5s var(--ease),transform .5s var(--ease),visibility .5s;
-    background:rgba(20,16,15,.94)}
-  body[data-theme="light"] .navlinks{background:rgba(249,244,236,.96)}
+    background:rgba(220,3,3,.97)}
+  body[data-theme="white"] .navlinks{background:rgba(255,255,255,.97)}
   body.menu .navlinks{opacity:1;visibility:visible;transform:none}
   .navlinks a{padding:15px 20px;font-size:1rem;text-align:left}
 }
+
+/* On a red page the active pill inverts, same as the buttons do. */
+body[data-theme="red"] .navlinks a[aria-current="page"]{color:var(--red-deep)}
+body[data-theme="red"] .navlinks a[aria-current="page"]::before{background:#fff;
+  box-shadow:0 6px 20px -6px rgba(90,0,0,.55)}
+
+/* The logo is red artwork, so on a red page it is flattened to white. */
+body[data-theme="red"] .site-header .brand img{
+  filter:brightness(0) invert(1) drop-shadow(0 2px 6px rgba(90,0,0,.4))}
