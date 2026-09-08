@@ -154,10 +154,15 @@ the number was chosen.
 
 **Change where the review buttons point.** The shop has no reviews of its own
 on this site — they all live on Google, and the buttons link straight out to
-them. That link appears in **four** places: three times in
-`public/reviews/index.html` (two buttons at the top, one in the steps section)
-and once in the Reviews band on `public/index.html`. Search for
+them. That link appears in **five** places: three times in
+`public/reviews/index.html` (two buttons at the top, one after the steps) and
+twice in the Reviews band on `public/index.html`. Search for
 `google.com/maps/place` to find them all.
+
+The buttons use the site's own `.cta` component rather than Google's blue
+button styling, so they match everything else on the page. *Review us on
+Google* is the solid red one and *Read the reviews* is the outlined one,
+everywhere they appear.
 
 Google also offers a short one-tap link that opens the write-a-review box
 directly, rather than the reviews list. It looks like `https://g.page/r/…/review`
