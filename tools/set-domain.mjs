@@ -62,5 +62,5 @@ for await (const path of walk('public')) {
 console.log(`\n${current}  ->  ${next}`);
 console.log(`${changed} file${changed === 1 ? '' : 's'} changed.`);
 console.log('\nNext: commit and push, then add the new domain in the Cloudflare');
-console.log('dashboard (Workers > endeansbarbers > Settings > Domains & Routes)');
+console.log('dashboard (Workers & Pages > endeans > Custom domains)');
 console.log('and re-verify it in Google Search Console.');

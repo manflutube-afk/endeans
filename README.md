@@ -11,8 +11,9 @@ framework, no template engine and no build step for the site itself — what is 
 
 ## How it deploys
 
-The repository is connected to Cloudflare Workers Builds. **Push to `main` and
-the site goes live.** Nothing else to run.
+The site is a **Cloudflare Pages** project called `endeans`, live at
+<https://endeans.pages.dev>. The repository is connected to it, so **pushing to
+`main` puts the change live.** Nothing else to run.
 
 ```
 git add -A
@@ -20,25 +21,31 @@ git commit -m "Update opening hours"
 git push
 ```
 
-Cloudflare picks up the push, reads `wrangler.jsonc`, and uploads everything in
-`public/` to the `endeansbarbers` Worker. It takes about thirty seconds.
+Cloudflare picks up the push and uploads everything in `public/`. It takes about
+thirty seconds.
 
 ### Connecting the repository (one time only)
 
-1. Cloudflare dashboard → **Compute (Workers)** → **endeansbarbers**
-2. **Settings** → **Build** → **Connect repository**
-3. Pick `manflutube-afk/endeans`, branch `main`
-4. Leave the build command **empty** and the deploy command as `npx wrangler deploy`
+1. Cloudflare dashboard → **Workers & Pages** → **endeans**
+2. **Settings** → **Builds & deployments** → **Connect to Git**
+3. Pick `manflutube-afk/endeans`, production branch `main`
+4. **Framework preset:** None
+   **Build command:** leave empty
+   **Build output directory:** `public`
 
-That's it. There is no build to configure because there is nothing to build.
+There is no build to configure because there is nothing to build — the files in
+`public/` are the site exactly as served.
 
 ### Deploying by hand
 
 If you ever need to push a change without going through Git:
 
 ```bash
-npx wrangler deploy
+npm run deploy
 ```
+
+That runs `wrangler pages deploy`, which reads the project name and output
+directory out of `wrangler.jsonc`.
 
 ---
 
@@ -152,13 +159,15 @@ opening hours, breadcrumbs on every sub-page, a sitemap and a robots.txt.
 
 ### A note on the domain
 
-The site currently uses `endeansbarbers.manflutube.workers.dev`. A
-`workers.dev` subdomain works, but Google gives it no local-search weight and it
-looks like a test address to customers. When a real domain is ready:
+The site currently uses `endeans.pages.dev`. A `pages.dev` subdomain works and
+is perfectly stable, but Google gives it no local-search weight and it reads as
+a test address to a customer who sees it. When a real domain is ready:
 
 ```bash
 npm run set-domain endeansbarbers.co.uk
 ```
 
-then add it in the Cloudflare dashboard under **Workers → endeansbarbers →
-Settings → Domains & Routes**, and re-verify in Search Console.
+That rewrites every canonical URL, Open Graph tag, sitemap entry and piece of
+structured data in one pass. Then add the domain in the Cloudflare dashboard
+under **Workers & Pages → endeans → Custom domains**, and re-verify the new
+address in Search Console.
