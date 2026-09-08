@@ -193,6 +193,20 @@ understood. The visible reviews are genuine and quoted accurately; it is only
 the `aggregateRating` and `review` structured data that Google may take a dim
 view of. Deleting that one script block leaves the visible reviews untouched.
 
+**Change the social sharing card** — the picture Facebook, WhatsApp and X show
+when someone shares a link. It is not a file you edit: `tools/build-images.mjs`
+draws it from the logo and the barber pole on the site's white background, in
+both 1200x630 and square, so it stays in step with the artwork. Change the logo
+or the pole and run `npm run images` and the card follows.
+
+The strapline on the card is drawn in whatever sans-serif the build machine
+has, not Archivo — Archivo is a web font and is not installed locally. The logo
+carries the shop name, so the text below it is only supporting.
+
+Note the card is branding, not a photo of the shop, so the structured data
+points at `photo-shopfront-1200.jpg` instead: Google wants an actual photograph
+of the premises in a business `image` field.
+
 **Add a photograph.** Drop it in `source-images/`, add it to the list in
 `tools/build-images.mjs`, run `npm run images`, then add a `<div class="ph soft">`
 block to `public/gallery/index.html` copying one of the existing ones. The

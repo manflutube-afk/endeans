@@ -94,15 +94,89 @@ for (const h of [260, 520]) {
   console.log('pole   ', file, `${m.width}x${m.height}`);
 }
 
-/* Social preview cards. The landscape one is what Facebook and X read;
-   the square one is used by the structured data. */
-await sharp('source-images/1.jpg')
-  .resize(1200, 630, { fit: 'cover', position: 'attention' })
-  .jpeg({ quality: 76, mozjpeg: true }).toFile(`${OUT}/og-image.jpg`);
-await sharp('source-images/1.jpg')
-  .resize(1200, 1200, { fit: 'cover', position: 'attention' })
-  .jpeg({ quality: 72, mozjpeg: true }).toFile(`${OUT}/og-image-square.jpg`);
+/* Social preview cards — what Facebook, WhatsApp and X show when the link is
+   shared. Composed here rather than cropped from a photograph, so the card
+   carries the shop's own logo and the barber pole that stands beside it on the
+   home page, on the site's white background.
+
+   The wording is drawn as part of the artwork rather than set in Archivo,
+   because that font is a web font and is not installed on the machine that
+   runs this build. The logo already carries the shop name, so the text below
+   it is only a strapline. */
+async function socialCard(width, height) {
+  const poleH = Math.round(height * (height === width ? 0.42 : 0.60));
+  const pole = await sharp(poleCut).resize({ height: poleH }).png().toBuffer();
+  const poleW = (await sharp(pole).metadata()).width;
+
+  const logoW = Math.round(poleH * 1.15);
+  const logo = await sharp('source-images/logo-dark.webp')
+    .resize({ width: logoW }).png().toBuffer();
+  const logoH = (await sharp(logo).metadata()).height;
+
+  const gap = Math.round(width * 0.045);
+  const lockupW = logoW + gap + poleW;
+  const lockupX = Math.round((width - lockupW) / 2);
+
+  /* The lockup and the two lines of text are treated as one block and centred
+     vertically, so the square card does not end up bottom-heavy. */
+  const lockupH = Math.max(poleH, logoH);
+  const titleSize = Math.round(width * 0.038);
+  const subSize = Math.round(width * 0.026);
+  const textGap = Math.round(height * 0.075);
+  const textBlockH = titleSize + Math.round(subSize * 1.9);
+  const blockH = lockupH + textGap + textBlockH;
+  const lockupTop = Math.round((height - blockH) / 2);
+
+  /* A soft red wash in two corners, echoing the blobs used on the pages. */
+  const background = Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">
+    <defs>
+      <radialGradient id="a" cx="8%" cy="6%" r="62%">
+        <stop offset="0%" stop-color="#dc0303" stop-opacity="0.16"/>
+        <stop offset="100%" stop-color="#dc0303" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="b" cx="94%" cy="96%" r="58%">
+        <stop offset="0%" stop-color="#ff7878" stop-opacity="0.20"/>
+        <stop offset="100%" stop-color="#ff7878" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <rect width="${width}" height="${height}" fill="#ffffff"/>
+    <rect width="${width}" height="${height}" fill="url(#a)"/>
+    <rect width="${width}" height="${height}" fill="url(#b)"/>
+    <rect x="0" y="${height - Math.round(height * 0.014)}" width="${width}"
+          height="${Math.round(height * 0.014)}" fill="#dc0303"/>
+  </svg>`);
+
+  const textTop = lockupTop + lockupH + textGap + titleSize;
+  const text = Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">
+    <text x="${width / 2}" y="${textTop}" text-anchor="middle"
+          font-family="Archivo, Segoe UI, Helvetica, Arial, sans-serif"
+          font-size="${titleSize}" font-weight="700" fill="#3d0b0b"
+          letter-spacing="-0.5">Traditional &amp; Modern Gentlemen's Hairdressing</text>
+    <text x="${width / 2}" y="${textTop + Math.round(subSize * 1.9)}" text-anchor="middle"
+          font-family="Karla, Segoe UI, Helvetica, Arial, sans-serif"
+          font-size="${subSize}" fill="#8c4a4a"
+          letter-spacing="1.5">10a HARBOUR ROAD, PAR, CORNWALL &#183; 01726 983 678</text>
+  </svg>`);
+
+  return sharp(background)
+    .composite([
+      { input: logo, left: lockupX, top: lockupTop + Math.round((Math.max(poleH, logoH) - logoH) / 2) },
+      { input: pole, left: lockupX + logoW + gap, top: lockupTop },
+      { input: text, left: 0, top: 0 },
+    ])
+    .jpeg({ quality: 88, mozjpeg: true });
+}
+
+await (await socialCard(1200, 630)).toFile(`${OUT}/og-image.jpg`);
+await (await socialCard(1200, 1200)).toFile(`${OUT}/og-image-square.jpg`);
 console.log('social ', `${OUT}/og-image.jpg`, `${OUT}/og-image-square.jpg`);
+
+/* A plain photograph of the shop front, for the structured data. The social
+   cards above are branding rather than a picture of the place, and Google asks
+   for an actual photo of the business in a LocalBusiness image field. */
+await sharp('source-images/1.jpg').resize({ width: 1200 })
+  .jpeg({ quality: 80, mozjpeg: true }).toFile(`${OUT}/photo-shopfront-1200.jpg`);
+console.log('photo  ', `${OUT}/photo-shopfront-1200.jpg`);
 
 /* Icons, all from source-images/favicon.png. The artwork is dark on a
    transparent background, so it is flattened onto white — otherwise it would
