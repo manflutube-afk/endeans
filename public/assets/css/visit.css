@@ -31,9 +31,9 @@
 @media(max-width:860px){
   .split-visit{grid-template-columns:1fr;gap:clamp(22px,5vw,34px)}
   .hours li{padding:11px 20px;font-size:.92rem}
+  /* Contact details and the hours list centre on a phone. */
+  .split-visit{text-align:center}
+  .hours{margin-inline:auto}
+  .maplabel{justify-content:center}
+  .split-visit address{text-align:center}
 }
-
-/* ---------- red-theme inversions ---------- */
-body[data-theme="red"] .hours li.today{background:#fff;color:var(--red-deep);
-  box-shadow:0 12px 30px -14px rgba(90,0,0,.5)}
-body[data-theme="red"] .maplabel svg{color:#fff}

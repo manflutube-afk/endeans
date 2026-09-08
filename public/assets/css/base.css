@@ -58,17 +58,6 @@ p.body{font-size:1.02rem;line-height:1.72;opacity:.88;max-width:58ch}
   0%{transform:translate3d(0,0,0) rotate(0deg) scale(1)}
   100%{transform:translate3d(4%,-5%,0) rotate(24deg) scale(1.14)}
 }
-/* barber pole rail, pinned to the edge of the viewport */
-.pole{position:absolute;pointer-events:none;border-radius:999px;overflow:hidden;opacity:.42;z-index:1;
-  background:linear-gradient(90deg,rgba(255,255,255,.25),rgba(255,255,255,.86) 38%,rgba(255,255,255,.5) 72%,rgba(255,255,255,.16));
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.22)}
-.pole::after{content:"";position:absolute;inset:-40%;
-  background:repeating-linear-gradient(38deg,var(--red) 0 15px,transparent 15px 30px);
-  animation:pole 3.4s linear infinite}
-.pole::before{content:"";position:absolute;inset:0;z-index:1;border-radius:inherit;
-  background:linear-gradient(90deg,rgba(0,0,0,.28),transparent 34%,rgba(255,255,255,.5) 52%,transparent 70%,rgba(0,0,0,.24))}
-@keyframes pole{to{transform:translateY(-60px)}}
-@keyframes poleSm{to{transform:translateY(-36px)}}
 
 /* ---------- entrance animation ---------- */
 .fade-up{opacity:0;transform:translateY(26px);animation:fu .95s var(--ease) forwards}
@@ -78,23 +67,15 @@ p.body{font-size:1.02rem;line-height:1.72;opacity:.88;max-width:58ch}
 
 @media(max-width:860px){
   .split{grid-template-columns:1fr;gap:clamp(22px,5vw,34px)}
-  .pole{top:0!important;bottom:auto!important;height:100%!important;width:9px!important;border-radius:0;opacity:.45}
-  .pole-l{left:0!important;right:auto!important;border-radius:0 4px 4px 0}
-  .pole-r{right:0!important;left:auto!important;border-radius:4px 0 0 4px}
-  .pole::after{background:repeating-linear-gradient(38deg,var(--red) 0 9px,transparent 9px 18px);animation-name:poleSm}
-  .pole::before{background:linear-gradient(90deg,rgba(0,0,0,.3),rgba(255,255,255,.45) 50%,rgba(0,0,0,.26))}
+  /* Page introductions centre up on a phone. Running paragraphs stay
+     left-aligned, because centred body copy is hard to read. */
+  .section .eyebrow{display:flex;justify-content:center}
+  .section h1,.section h2,.section .lede{text-align:center}
+  .section .lede{margin-inline:auto}
+  .section .ctas,.section .pills{justify-content:center}
 }
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
   .fade-up{opacity:1;transform:none}
 }
-
-/* ---------- red-theme inversions ----------
-   On a red page anything coloured red disappears, so these switch to white. */
-body[data-theme="red"] .script{color:rgba(255,255,255,.88)}
-body[data-theme="red"] .hl{color:#fff;font-weight:700;
-  text-decoration:underline;text-decoration-color:rgba(255,255,255,.45);text-underline-offset:4px}
-body[data-theme="red"] .big-link::after{background:#fff}
-body[data-theme="red"] .big-link:hover{color:#ffdada}
-body[data-theme="red"] ::selection{background:#fff;color:var(--red-deep)}

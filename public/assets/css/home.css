@@ -2,7 +2,11 @@
 
 .hero{min-height:calc(100vh - 96px);display:flex;align-items:center}
 .hero .wrap{width:100%}
-.hero-logo{width:clamp(96px,13vw,160px);height:auto;margin-bottom:26px}
+/* The logo and the barber pole stand side by side at the top of the page. */
+.hero-lockup{display:flex;align-items:center;gap:clamp(14px,2.4vw,26px);margin-bottom:26px}
+.hero-logo{width:clamp(96px,13vw,160px);height:auto}
+.hero-pole{height:clamp(96px,13vw,150px);width:auto;flex:none;
+  filter:drop-shadow(0 10px 20px rgba(168,4,6,.22))}
 .hero-photo{aspect-ratio:3/4;max-height:60vh;margin-inline:auto;width:100%}
 .hero .lede{margin-top:22px}
 
@@ -22,12 +26,13 @@
 @media(max-width:860px){
   .hero{min-height:0}
   .hero-photo{aspect-ratio:4/3;max-height:38vh}
+  /* Everything in the hero centres up on a phone. */
+  .hero .wrap{text-align:center}
+  .hero-lockup{justify-content:center}
+  .hero .lede{margin-inline:auto}
+  .hero .ctas,.hero .pills{justify-content:center}
+  .hero .eyebrow{justify-content:center}
+  .quicklink h3{justify-content:center;gap:10px}
+  .quicklink p{margin-inline:auto;max-width:34ch}
+  .quicklinks{text-align:center}
 }
-
-/* ---------- red-theme inversions ---------- */
-body[data-theme="red"] .quicklink:hover{background:rgba(255,255,255,.22);
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.5),0 26px 54px -26px rgba(90,0,0,.45)}
-body[data-theme="red"] .quicklink h3 svg{color:#fff}
-
-/* Same treatment for the large logo in the hero. */
-body[data-theme="red"] .hero-logo{filter:brightness(0) invert(1)}

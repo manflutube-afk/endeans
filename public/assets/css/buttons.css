@@ -51,16 +51,3 @@
   .cta{padding:17px 26px;font-size:.9rem}
 }
 @media(max-width:520px){ .cta{flex:1 1 100%;justify-content:center} }
-
-/* ---------- on a red page the button inverts ----------
-   A red button on a red background is invisible, so it becomes white with
-   red lettering. The ghost variant is restated afterwards because the rule
-   above it would otherwise give it red text on a transparent fill. */
-body[data-theme="red"] .cta{--g1:#fff;--g2:#ffe3e2;color:var(--red-deep);
-  box-shadow:0 14px 34px -14px rgba(90,0,0,.5),inset 0 1px 0 rgba(255,255,255,.9)}
-body[data-theme="red"] .cta:hover{box-shadow:0 24px 52px -16px rgba(90,0,0,.55),inset 0 1px 0 #fff}
-body[data-theme="red"] .cta i{background:linear-gradient(100deg,transparent,rgba(220,3,3,.2),transparent)}
-body[data-theme="red"] .cta::before{
-  background:conic-gradient(from 0deg,transparent 0deg,rgba(255,150,150,.95) 26deg,transparent 62deg,transparent 360deg)}
-body[data-theme="red"] .cta.ghost{--g1:rgba(255,255,255,.14);--g2:rgba(255,255,255,.05);color:#fff}
-body[data-theme="red"] .cta.chrome{--g1:var(--red-deep);--g2:#7d0305;color:#fff}

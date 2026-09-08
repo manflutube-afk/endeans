@@ -97,35 +97,23 @@ Each file owns one thing, and each page loads only what it uses.
 | File | Owns |
 | --- | --- |
 | `tokens.css` | Every colour, font and radius. Change a brand colour here and it changes everywhere. |
-| `base.css` | Reset, page shell, typography, the background grain and barber poles. |
+| `base.css` | Reset, page shell, typography, the background grain and the soft colour blobs. |
 | `header.css` | The sticky header and the mobile menu. |
-| `footer.css` | The footer. Brings its own colours so it looks identical on every page. |
-| `buttons.css` | The call-to-action buttons in their three finishes. |
+| `footer.css` | The footer, identical on every page. |
+| `buttons.css` | The call-to-action buttons: solid red, outlined, and deep red. |
 | `cards.css` | Service cards, pills and badges. |
 | `photos.css` | The organic photo crops. |
 | `lightbox.css` | The full-screen photo viewer. |
 | `home.css`, `services.css`, `about.css`, `gallery.css`, `visit.css` | Layout for that one page only. |
 
-### The two themes
+### The palette
 
-The palette is red and white — there is no black on the site, and the darkest
-value anywhere is `--maroon`, a deep red used for text on white pages.
+The site is white. Red is an accent only — buttons, the active nav pill, the
+"open now" pill and today's row in the opening hours. There is no black
+anywhere: the darkest value is `--maroon`, a deep red used for body text.
 
-Every page declares one of two themes on its `<body>` tag, and they alternate
-down the site so it never reads as a wall of one colour:
-
-| Page | Theme |
-| --- | --- |
-| Home, About, Visit, 404 | `<body data-theme="red">` — red background, white text |
-| Services, Gallery | `<body data-theme="white">` — white background, maroon text |
-
-The theme swaps a handful of CSS variables in `tokens.css`, and everything else
-follows automatically. The only things that need to know which theme they are on
-are the ones that would otherwise be red on red — the buttons, the active nav
-pill, the "open now" pill, today's row in the opening hours, and the logo. Each
-of those has a short `body[data-theme="red"]` block at the bottom of the file
-that owns it. To flip a page from one theme to the other, change its `body` tag
-and its `theme-color` meta; nothing else.
+There is only one theme, so pages carry no theme attribute. Every colour comes
+from `tokens.css`; change `--red` there and the whole site follows.
 
 ### The scripts
 
@@ -149,6 +137,15 @@ works with JavaScript turned off — these only add conveniences.
 `openingHoursSpecification` in the structured data), the `<ul class="footer-hours">`
 block in each of the six pages, `public/index.html`'s structured data, and the
 `WEEK` table at the top of `public/assets/js/hours.js`.
+
+**Change the favicon.** Replace `source-images/favicon.png` (a square PNG,
+ideally 512px or larger, dark artwork on a transparent background) and run
+`npm run images`. That regenerates the browser icons, the phone home-screen
+icons and `public/favicon.ico` together, so they never drift apart.
+
+**Change the barber pole** beside the logo on the home page: replace
+`source-images/pole.png` and run `npm run images`. The build trims the empty
+space around the artwork automatically, so it does not need cropping first.
 
 **Add a photograph.** Drop it in `source-images/`, add it to the list in
 `tools/build-images.mjs`, run `npm run images`, then add a `<div class="ph soft">`
