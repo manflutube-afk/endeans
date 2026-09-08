@@ -19,3 +19,40 @@
   .step-n{margin-inline:auto}
   .steps li{padding:26px 24px}
 }
+
+/* ---------- star rating ----------
+   Five stars drawn as a repeating background rather than five inline SVGs,
+   which keeps the markup readable. The element is labelled for screen
+   readers, so the stars themselves carry no meaning of their own. */
+.stars{display:block;width:110px;height:20px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23dc0303'%3E%3Cpath d='M12 2l2.9 6.3 6.9.9-5 4.8 1.2 6.9L12 17.6 5.9 20.9 7.1 14 2.1 9.2l6.9-.9z'/%3E%3C/svg%3E");
+  background-size:22px 20px;background-repeat:repeat-x}
+
+/* ---------- the score at the top ---------- */
+.rating-summary{display:flex;align-items:center;gap:clamp(16px,2.4vw,26px);
+  margin-top:26px;padding:22px 30px;border-radius:var(--r-lg);width:fit-content;
+  background:var(--surface);box-shadow:inset 0 0 0 1px var(--surface-bd)}
+.rating-summary .score{font-family:var(--font-head);font-weight:800;line-height:1;
+  font-size:clamp(2.4rem,4.6vw,3.2rem);letter-spacing:-.03em;color:var(--red)}
+.rating-summary p{font-size:.92rem;opacity:.8;margin-top:8px}
+.rating-summary b{font-weight:600}
+
+/* ---------- individual reviews ---------- */
+.review-grid{display:grid;gap:clamp(12px,1.4vw,18px);margin-top:30px;
+  grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
+.review{margin:0;padding:28px 28px 26px;border-radius:var(--r-lg);
+  background:var(--surface);box-shadow:inset 0 0 0 1px var(--surface-bd);
+  display:flex;flex-direction:column;gap:14px;
+  transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+.review:hover{transform:translateY(-6px);
+  box-shadow:inset 0 0 0 1px rgba(220,3,3,.3),0 26px 54px -26px rgba(168,4,6,.35)}
+.review blockquote{margin:0;font-size:.98rem;line-height:1.68;opacity:.9}
+.review figcaption{margin-top:auto;padding-top:6px;font-size:.86rem}
+.review figcaption b{display:block;font-family:var(--font-head);font-weight:700;
+  font-size:.96rem;letter-spacing:-.005em}
+.review figcaption span{opacity:.6}
+
+@media(max-width:860px){
+  .rating-summary{margin-inline:auto}
+  .review{padding:24px 24px 22px}
+}

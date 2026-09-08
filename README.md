@@ -170,10 +170,21 @@ and you get it from your Google Business Profile under **Ask for reviews**. If
 you paste that in, use it for the *Leave a review* buttons and keep the current
 link for *Read the reviews*.
 
-No reviews are reproduced on the page and there is deliberately no star rating
-in the structured data. Google treats self-reported ratings on your own site as
-spam, and inventing review text would be worse. If you want real quotes shown
-on the page, send me the actual wording and who said it.
+**Change the reviews shown on the page.** Eight reviews are reproduced word for
+word in `public/reviews/index.html`, and the first three of those also appear on
+`public/index.html`. They were taken from the shop's Google listing on 8
+September 2026, along with the 4.9 score and the count of 98. They are hand
+written into the markup as `<figure class="review">` blocks — nothing fetches
+them, so **they will go stale**. When the score or the count changes, update the
+`.rating-summary` block on both pages and the `aggregateRating` in the
+structured data at the top of `public/reviews/index.html`.
+
+One caveat worth knowing: Google's guidelines say a business should not mark up
+reviews it collected from another site as its own, and self-reported ratings can
+be ignored or penalised. This was added at the owner's request with that
+understood. The visible reviews are genuine and quoted accurately; it is only
+the `aggregateRating` and `review` structured data that Google may take a dim
+view of. Deleting that one script block leaves the visible reviews untouched.
 
 **Add a photograph.** Drop it in `source-images/`, add it to the list in
 `tools/build-images.mjs`, run `npm run images`, then add a `<div class="ph soft">`
