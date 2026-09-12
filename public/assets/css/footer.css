@@ -36,9 +36,16 @@
 .footer-social a:hover{background:var(--red);color:#fff;transform:translateY(-3px)}
 .footer-social svg{width:19px;height:19px}
 
+/* No opacity on the row itself — a parent's opacity caps its children, and the
+   Kernow Pages credit needs to sit a little brighter than the fine print. */
 .footer-base{margin-top:clamp(38px,6vh,58px);padding:22px 0 26px;
   border-top:1px solid var(--surface-bd);display:flex;flex-wrap:wrap;gap:10px 26px;
-  align-items:center;justify-content:space-between;font-size:.84rem;opacity:.5}
+  align-items:center;justify-content:space-between;font-size:.84rem}
+.footer-base > span{opacity:.55}
+.footer-base .credit{opacity:.85}
+.footer-base .credit a{font-weight:600;color:var(--red-deep);
+  text-underline-offset:3px;transition:color .3s var(--ease)}
+.footer-base .credit a:hover{color:var(--red);text-decoration:underline}
 
 @media(max-width:900px){
   .footer-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
